@@ -1,12 +1,17 @@
-<% @letters.each do |letter| %>
-  <%= letter %>
-<% end %>
+<h1 class="mt-3 font-monospace fw-bold text-center">New Game</h1>
+<div class="d-flex justify-content-evenly p-5">
+  <% @letters.each do |letter| %>
+    <div class="container bg-info text-white fw-bold shadow p-3 mb-5 rounded border border-info border-2 rounded text-center p-2 m-1" ><%= letter %></div>
+  <% end %>
+</div>
 <% @time_before = Time.now %>
-<form action="/score" method="post" data-turbo="false">
+<form action="/score" class="ms-5 row g-2"method="post" data-turbo="false">
   <label for="word" class="form-label">What is your longest word?</label>
-  <input type="text" name="word" id= "word" placeholder="Type your word">
-  <%= hidden_field_tag :time_before, Time.now %>
-  <%= hidden_field_tag :letters, @letters %>
-  <input type="submit"text="Play">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <div class="d-flex pe-5">
+    <input class="flex-grow-1" type="text" name="word" id= "word" placeholder="Type your word">
+    <%= hidden_field_tag :time_before, Time.now %>
+    <%= hidden_field_tag :letters, @letters %>
+    <input type="submit" class="btn btn-primary" value="Play">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  </div>
 </form>
